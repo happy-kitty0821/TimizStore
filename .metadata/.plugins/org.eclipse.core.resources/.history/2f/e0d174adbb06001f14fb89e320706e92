@@ -1,0 +1,12 @@
+package models;
+
+import java.io.Serializable;
+
+public class UserModel implements Serializable {
+	private String user_name;
+	private String password;
+	private String full_name;
+	private String email;
+	private String phone_number;
+
+}

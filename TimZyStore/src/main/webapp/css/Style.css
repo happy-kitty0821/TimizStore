@@ -1,0 +1,158 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(45deg, rgb(0, 0, 0), #268f5b, rgb(0, 0, 0), black);
+    
+}
+
+.container .navbar {
+    display: flex;
+    height: 13vh;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 90%;
+}
+
+.navbar .navlist {
+    display: flex;
+    gap: 2.7rem;
+}
+
+.navlist li {
+    list-style: none;
+}
+
+.navlist a {
+    color: #fffcfc;
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: .08rem;
+}
+
+.navbar button {
+    background-color: #e96658;
+    border: none;
+    font-size: 1.1rem;
+    color: #fffcfc;
+    padding: .9rem 1.5rem;
+    letter-spacing: .08rem;
+    border-radius: .03rem;
+    transition: .5s ease;
+}
+
+.navbar button:hover {
+    background-color: #fb8b7f;
+    cursor: pointer;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 12vh);
+    width: 90%;
+    margin: auto;
+    gap: 4.2rem;
+}
+
+.Img_box img {
+    height: 33rem;
+}
+
+.content h1 {
+    color: white;
+    font-size: 3.5rem;
+    letter-spacing: .03rem;
+}
+
+.content h1 span {
+    color: #e96658;
+}
+
+.content p {
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    margin: 1.7rem 0;
+    letter-spacing: .03rem;
+}
+
+.content button {
+    background-color: transparent;
+    border: .1rem solid #e96658;
+    font-size: 1.1rem;
+    color: #e96658;
+    padding: .9rem 1.5rem;
+    letter-spacing: .08rem;
+    border-radius: .03rem;
+    transition: .5s ease;
+}
+
+.content button:hover {
+    letter-spacing: .2rem;
+    cursor: pointer;
+}
+
+.features {
+    width: 100%;
+    max-width: 40rem; /* set a max-width if necessary */
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    margin: auto;
+}
+
+.card h3 {
+    color: white;
+    letter-spacing: .04rem;
+}
+
+.features .card {
+    border-left: .3rem solid #e96658;
+    padding: .3rem 1rem;
+}
+
+.card:nth-child(1),
+.card:nth-child(3) {
+    margin-left: 7rem;
+}
+
+/* CSS for footer section */
+footer {
+    background: linear-gradient(45deg, rgb(0, 0, 0), #14a85e, rgb(0, 0, 0), black);
+    padding: 20px;
+    text-align: center;
+}
+
+.social-icons {
+    margin-bottom: 30px;
+}
+
+.social-icons img {
+    width: 40px;
+    height: auto;
+    margin: 0 10px;
+}
+
+.copyright {
+    color: white;
+    font-size: 20px;
+    align-items: center;
+    font-style: italic;
+    letter-spacing: .1rem;
+}
+
+.ecommerce-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #f80404; /* Set the color of the ecommerce name */
+}

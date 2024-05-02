@@ -1,0 +1,14 @@
+package utils;
+
+public class StringUtils {
+	//login query
+	public static final String LOGIN_QUERY = "select * from Users where username = ?;";
+	//user registration query
+	public static final String USER_REGISTRATION_QUERY = "insert into Users values()";
+	
+	
+	
+	//constants 
+	public static final String user_name = "username";
+	public static final String password = "password";
+}

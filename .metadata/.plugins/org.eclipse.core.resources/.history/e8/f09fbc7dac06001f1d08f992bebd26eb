@@ -1,0 +1,34 @@
+package utils;
+
+public class StringUtils {
+	//login query
+	public static final String LOGIN_QUERY = "select * from Users where username = ?;";
+	//user registration query
+	public static final String USER_REGISTRATION_QUERY = "insert into Users values()";
+	
+	
+	
+	//constants 
+	public static final String user_name = "username";
+	public static final String password = "password";
+
+
+	
+	
+	public static final String LOGIN_PAGE = "/pages/Login.jsp";
+	public static final String REGISTER_PAGE = "/pages/Register.jsp";
+	public static final String ADMIN_REGISTRATION_PAGE = "/pages/AddAdmin.jsp";
+	public static final String HOME_PAGE = "/pages/Index.jsp";
+	public static final String ADMIN_HOME_PAGE = "/pages/Admin.jsp";
+	public static final String CONTACT_US_PAGE = "/pages/Contact.jsp";
+	public static final String ADD_BRAND = "/pages/AddBrand.jsp";
+	public static final String ADD_PRODUCT_PAGE = "/pages/AddProducts.jsp";
+	// End JSP Route
+	
+	// Start Servlet Route
+	public static final String REGISTER_SERVLET = "/RegisterServlet";
+	public static final String LOGIN_SERVLET = "/UserLogin";
+	public static final String ADMIN_HOME_SERVLET = "/AdminHomeServlet";
+	// End Servlet Route
+
+}

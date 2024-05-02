@@ -1,0 +1,8 @@
+package utils;
+
+public class SgtringUtils {
+	//login query
+	public static final String LOGIN_QUERY = "select * from Users where username = ?;";
+	//user registration query
+	public static final String USER_REGISTRATION_QUERY = "";
+}
