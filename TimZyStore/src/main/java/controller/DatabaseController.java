@@ -11,7 +11,6 @@ import org.mindrot.bcrypt.BCrypt;
 import models.UserModel;
 import utils.StringUtils;
 
-
 public class DatabaseController {
 	public Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -20,22 +19,22 @@ public class DatabaseController {
 		String pass = "";
 		return DriverManager.getConnection(url, user, pass);
 	}
-	
+
 	public int getUserLogin(String username, String password) {
-		try(Connection con = getConnection()){
+		try (Connection con = getConnection()) {
 			PreparedStatement stmnt = con.prepareStatement(StringUtils.LOGIN_QUERY);
 			stmnt.setString(1, username);
 			ResultSet result = stmnt.executeQuery();
-			
+
 			if (result.next()) {
 				String hashedPasswordFromDb = result.getString("password");
 				if (BCrypt.checkpw(password, hashedPasswordFromDb)) {
 					String accountCategory = result.getString("account_category");
 					if ("User".equals(accountCategory)) {
-						return 1;//indicates that the user is customer
-			
+						return 1;// indicates that the user is customer
+
 					} else if ("Admin".equals(accountCategory)) {
-						return 2; //indicates that the user type is admin
+						return 2; // indicates that the user type is admin
 					}
 				}
 			}
@@ -45,8 +44,8 @@ public class DatabaseController {
 			return -1; // Server error or exception
 		}
 	}
-	
-	public int addNewUser (UserModel userModel) {
+
+	public int addNewUser(UserModel userModel) {
 		try (Connection con = getConnection()) {
 			PreparedStatement statement = con.prepareStatement(StringUtils.USER_REGISTRATION_QUERY);
 			String hashedPassword = BCrypt.hashpw(userModel.getPassword(), BCrypt.gensalt());
@@ -63,28 +62,43 @@ public class DatabaseController {
 			return -1;
 		}
 	}
-	
+
 	public void addProduct() {
 		try (Connection con = getConnection()) {
-			
+
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	public int getProductCount() {
-	int count = 0;
-		try(Connection con = getConnection()){
-			PreparedStatement statement = con.prepareStatement(StringUtils.GET_PRODUCT_COUNT_QUERY);
-			 ResultSet result = statement.executeQuery();
-		        if (result.next()) {
-		            count = result.getInt(1);
-		            System.out.println("product count = " + count);
-			
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return count;
+	    int count = 0;
+	    try (Connection con = getConnection();
+	         PreparedStatement statement = con.prepareStatement(StringUtils.GET_PRODUCT_COUNT_QUERY);
+	         ResultSet result = statement.executeQuery()) {
+	        if (result.next()) {
+	            count = result.getInt(1);
+	            System.out.println("product count = " + count);
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return count;
+	}
+
+	public int getCustomerCount() {
+	    int count = 0;
+	    try (Connection con = getConnection();
+	         PreparedStatement statement = con.prepareStatement(StringUtils.GET_CUSTOMER_COUNT_QUERY);
+	         ResultSet result = statement.executeQuery()) {
+	        if (result.next()) {
+	            count = result.getInt(1);
+	            System.out.println("customer count = " + count);
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return count;
 	}
 }

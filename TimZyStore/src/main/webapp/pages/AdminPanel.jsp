@@ -50,7 +50,7 @@
     </ul>
     <ul class="side-menu">
         <li>
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/pages/AddProducts.jsp">
                 <i class='bx bxs-cog' ></i>
                 <span class="text">Add Product</span>
             </a>
@@ -118,14 +118,14 @@
             <li>
                 <i class='bx bxs-calendar-check' ></i>
                 <span class="text">
-                    <h3>1020</h3>
+                    <h3><span><%=request.getAttribute("productCount")%></span></h3>
                     <p>Total Products</p>
                 </span>
             </li>
             <li>
                 <i class='bx bxs-group' ></i>
                 <span class="text">
-                    <h3>2834</h3>
+                    <h3><span><%=request.getAttribute("customerCount")%></span></h3>
                     <p>Total User</p>
                 </span>
             </li>
