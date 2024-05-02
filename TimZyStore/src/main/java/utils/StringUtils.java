@@ -10,6 +10,8 @@ public class StringUtils {
 			+ "values(?,?,?,?,?,?)";
 	//query to add products
 	public static final String PRODUCT_ADD_QUERY = "";
+	//query to get the product count
+	public static final String GET_PRODUCT_COUNT_QUERY = "SELECT COUNT(*) FROM product";
 	
 	
 	//constants 

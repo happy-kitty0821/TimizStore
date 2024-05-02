@@ -72,4 +72,19 @@ public class DatabaseController {
 			e.printStackTrace();
 		}
 	}
+	public int getProductCount() {
+	int count = 0;
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.GET_PRODUCT_COUNT_QUERY);
+			 ResultSet result = statement.executeQuery();
+		        if (result.next()) {
+		            count = result.getInt(1);
+		            System.out.println("product count = " + count);
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
 }

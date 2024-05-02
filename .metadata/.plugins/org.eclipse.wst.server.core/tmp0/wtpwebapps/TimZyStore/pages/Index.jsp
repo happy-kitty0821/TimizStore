@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +18,14 @@
                 <li><a href="watch.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/pages/Product.jsp">Product</a></li>
                 <li><a href="#">About Us</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/Login.jsp">Login</a></li>
-                <li><a href="#">SignUp</a></li>
+                <% 
+            if (session.getAttribute("username") == null) {
+            %>
+                <a href="${pageContext.request.contextPath}/pages/Login.jsp">Login</a>
+            <% } else { %>
+                <a href="${pageContext.request.contextPath}/LogOutServlet">Logout</a>
+            <% } %>
+                <!--<li><a href="#">SignUp</a></li> -->
             </ul>
             <button> Get Started</button>
         </div>
