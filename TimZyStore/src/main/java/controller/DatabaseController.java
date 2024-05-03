@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import org.mindrot.bcrypt.BCrypt;
 
+import models.AdminModel;
 import models.UserModel;
 import utils.StringUtils;
 
@@ -100,5 +101,24 @@ public class DatabaseController {
 	        e.printStackTrace();
 	    }
 	    return count;
+	}
+	public int addAdminUser(AdminModel adminModel) {
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.ADD_ADMIN_USER_QUERY);
+			String hashedPassword = BCrypt.hashpw(adminModel.getPassword(), BCrypt.gensalt());
+			statement.setString(1, adminModel.getUser_name());
+			statement.setString(2, hashedPassword);
+			statement.setString(3, adminModel.getFull_name());
+			statement.setString(4, adminModel.getEmail());
+			statement.setString(5, adminModel.getAccount_category());
+			statement.setString(6, adminModel.getPhone_number());
+			statement.setString(7, adminModel.getProfile_picture_image());
+			int result = statement.executeUpdate();
+			return result > 0 ? 1 : 0;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
 	}
 }

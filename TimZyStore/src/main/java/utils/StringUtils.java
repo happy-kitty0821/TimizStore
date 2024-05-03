@@ -14,7 +14,14 @@ public class StringUtils {
 	public static final String GET_PRODUCT_COUNT_QUERY = "SELECT COUNT(*) FROM product";
 	//query to get the customer count
 	public static final String GET_CUSTOMER_COUNT_QUERY = "select count(*) from user where account_category = 'User'";
-	
+	//query to add brand
+	public static final String ADD_BRAND_QUERY = "insert into brand (brand_name, country_of_origin, website)"
+			+ "values(?,?,?)";
+	//query to get the brand info from the brand table
+	public static final String GET_BRAND_INFO_QUERY = "select * from brand";
+	//query to add admin user
+	public static final String ADD_ADMIN_USER_QUERY = "insert into User (user_name, password, full_name, email, account_category, phone_number, profile_picture_image)"
+			+ "values(?,?,?,?,?,?,?)";
 	
 	//constants 
 	public static final String user_name = "username";
@@ -22,6 +29,7 @@ public class StringUtils {
 	public static final String full_name = "fullname";
 	public static final String email = "email";
 	public static final String phone_number = "phonenumber";
+	public static final String account_category = "account_category";
 
 	//uploaded picture store dir
 	public static final String PROFILE_PIC_DIR = "\\Users\\HeheHe\\eclipse-workspace\\TimZyStore\\src\\main\\webapp\\Uploads\\ProfilePictures\\";
