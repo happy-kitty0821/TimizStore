@@ -36,7 +36,8 @@ public class AddBrandsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		//
+		//this is a comment 
+		System.out.print("hello");
 		
 	}
 
