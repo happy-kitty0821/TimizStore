@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Watch</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
     
 </head>
 <body>
@@ -27,6 +29,8 @@
             <% } %>
                 <!--<li><a href="#">SignUp</a></li> -->
             </ul>
+             <li><a href="#" id="profile-link"><i class="fa-solid fa-user"></i></a></li>
+             <li><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
             <button> Get Started</button>
         </div>
         <section class="hero">
