@@ -5,10 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mindrot.bcrypt.BCrypt;
 
 import models.AdminModel;
+import models.BrandModel;
 import models.UserModel;
 import utils.StringUtils;
 
@@ -120,5 +123,39 @@ public class DatabaseController {
 			e.printStackTrace();
 			return -1;
 		}
+	}
+	
+	public int addBrands(BrandModel brandModel) {
+	    try (Connection con = getConnection()) {
+	        PreparedStatement statement = con.prepareStatement(StringUtils.ADD_BRAND_QUERY);
+	        statement.setString(1, brandModel.getBrand_name());
+	        statement.setString(2, brandModel.getCountry_of_origin());
+	        statement.setString(3, brandModel.getWebsite());
+	        int result = statement.executeUpdate();
+	        return result > 0 ? 1 : 0;
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	        return -1;
+	    }
+	}
+
+	
+	public List<BrandModel> getBrandDetails(){
+		List<BrandModel> brandDetails = new ArrayList<>();
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.GET_ALL_BRAND_DETAILS_QUERY);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				String brand_name  = resultSet.getString("brand_name");
+				String country_of_origin = resultSet.getString("country_of_origin");
+				String website = resultSet.getString("website");
+				BrandModel brandModel = new BrandModel(brand_name, country_of_origin, website);
+				brandDetails.add(brandModel);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return brandDetails;	
 	}
 }

@@ -22,6 +22,8 @@ public class StringUtils {
 	//query to add admin user
 	public static final String ADD_ADMIN_USER_QUERY = "insert into User (user_name, password, full_name, email, account_category, phone_number, profile_picture_image)"
 			+ "values(?,?,?,?,?,?,?)";
+	//query to get all the rows from brand taable
+	public static final String GET_ALL_BRAND_DETAILS_QUERY = "SELECT * FROM Brand";
 	
 	//constants 
 	public static final String user_name = "username";
