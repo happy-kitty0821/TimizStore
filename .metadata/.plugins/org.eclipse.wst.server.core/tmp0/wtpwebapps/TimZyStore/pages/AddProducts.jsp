@@ -57,6 +57,21 @@
 <body>
     <div class="container">
         <h2>Add Product</h2>
+        <div class="messages">
+        	    <%-- Display success message if available --%>
+    <% if (request.getAttribute("successMessage") != null) { %>
+        <div style="color: green;">
+            <%= request.getAttribute("successMessage") %>
+        </div>
+    <% } %>
+    
+    <%-- Display error message if available --%>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+        <div style="color: red;">
+            <%= request.getAttribute("errorMessage") %>
+        </div>
+    <% } %>
+        </div>
         <form action="${pageContext.request.contextPath}/AddProductServlet" method="POST" enctype="multipart/form-data">
             <label for="productName">Product Name:</label>
             <input type="text" id="productName" name="product_name" required>

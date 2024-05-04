@@ -143,5 +143,22 @@ public class ProductModel {
 	public void setFeatures(String features) {
 		this.features = features;
 	}
+	//use this constructor to get all the informations
+
+	public ProductModel(int product_id, String product_name, String product_description, double price, int quantity,
+			int brand_id, String product_image, double screen_size, String connectivity, String os, String features) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.product_description = product_description;
+		this.price = price;
+		this.quantity = quantity;
+		this.brand_id = brand_id;
+		this.product_image = product_image;
+		this.screen_size = screen_size;
+		this.connectivity = connectivity;
+		this.os = os;
+		this.features = features;
+	}
 	
 }

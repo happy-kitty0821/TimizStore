@@ -29,7 +29,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/DisplayProductAdmin">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text"> Display Products</span>
             </a>

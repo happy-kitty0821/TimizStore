@@ -26,6 +26,10 @@ public class StringUtils {
 			+ "values(?,?,?,?,?,?,?)";
 	//query to get all the rows from brand taable
 	public static final String GET_ALL_BRAND_DETAILS_QUERY = "SELECT * FROM Brand";
+	//query to get the all products
+	public static final String GET_ALL_PRODUCTS = "select * from Product";
+	//delete product query
+	public static final String DELETE_PRODUCT_QUERY = "DELETE FROM product WHERE product_id = ?";
 	
 	//constants 
 	public static final String user_name = "username";

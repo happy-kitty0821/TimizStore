@@ -82,6 +82,7 @@ public class DatabaseController {
 			statement.setString(9, productModel.getOs());
 			statement.setString(10, productModel.getFeatures());
             int result = statement.executeUpdate();
+            System.out.print("product add :"+ result );
             return result > 0 ? 1 : 0;
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -173,4 +174,33 @@ public class DatabaseController {
 		}
 	return brandDetails;	
 	}
+	
+		public List<ProductModel> getProductsDetails(){
+		    List<ProductModel> productDetails = new ArrayList<>();
+		    try(Connection con = getConnection()){
+		        PreparedStatement statement = con.prepareStatement(StringUtils.GET_ALL_PRODUCTS);
+		        ResultSet resultSet = statement.executeQuery();
+		        while (resultSet.next()) {
+		        	int product_id = resultSet.getInt("product_id");
+		            String product_name = resultSet.getString("product_name");
+		            String product_description = resultSet.getString("product_description");
+		            double price = resultSet.getDouble("price");
+		            int quantity = resultSet.getInt("quantity");
+		            int brand_id = resultSet.getInt("brand_id");
+		            String product_image = resultSet.getString("product_image");
+		            double screen_size = resultSet.getDouble("screen_size");
+		            String connectivity = resultSet.getString("connectivity");
+		            String os = resultSet.getString("os");
+		            String features = resultSet.getString("features");
+		            ProductModel productModel = new ProductModel(product_id, product_name,product_description, price,
+		            quantity, brand_id, product_image, screen_size, connectivity, os, features);
+		            productDetails.add(productModel);
+		        }
+		        
+		    } catch (ClassNotFoundException | SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return productDetails;
+		}
+
 }
