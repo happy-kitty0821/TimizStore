@@ -108,8 +108,8 @@ public class ProductModel {
 		return product_image;
 	}
 
-	public void setProduct_image(String product_image) {
-		this.product_image = product_image;
+	public void setProduct_image(Part part) {
+		this.product_image = getProductPicName(part);
 	}
 
 	public double getScreen_size() {

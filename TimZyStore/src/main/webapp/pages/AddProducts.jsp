@@ -57,12 +57,12 @@
 <body>
     <div class="container">
         <h2>Add Product</h2>
-        <form action="add_product.php" method="POST">
+        <form action="${pageContext.request.contextPath}/AddProductServlet" method="POST" enctype="multipart/form-data">
             <label for="productName">Product Name:</label>
-            <input type="text" id="productName" name="productName" required>
+            <input type="text" id="productName" name="product_name" required>
             
             <label for="productDescription">Product Description:</label>
-            <textarea id="productDescription" name="productDescription" rows="4"></textarea>
+            <textarea id="productDescription" name="product_escription" rows="4"></textarea>
             
             <label for="price">Price:</label>
             <input type="number" id="price" name="price" min="0" step="0.01" required>
@@ -71,13 +71,13 @@
             <input type="number" id="quantity" name="quantity" min="0" required>
             
             <label for="brandId">Brand ID:</label>
-            <input type="number" id="brandId" name="brandId" min="0">
+            <input type="number" id="brandId" name="brand_id" min="0">
             
             <label for="productImage">Product Image:</label>
-            <input type="file" id="productImage" name="productImage">
+            <input type="file" id="productImage" name="product_image">
             
             <label for="screenSize">Screen Size:</label>
-            <input type="number" id="screenSize" name="screenSize" min="0" step="0.01">
+            <input type="number" id="screenSize" name="screen_size" min="0" step="0.01">
             
             <label for="connectivity">Connectivity:</label>
             <input type="text" id="connectivity" name="connectivity">

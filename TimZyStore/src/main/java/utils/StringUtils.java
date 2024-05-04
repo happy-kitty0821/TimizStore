@@ -9,8 +9,10 @@ public class StringUtils {
 	public static final String USER_REGISTRATION_QUERY = "insert into User (user_name, password, full_name, email, phone_number, profile_picture_image)"
 			+ "values(?,?,?,?,?,?)";
 	//query to add products
-	public static final String PRODUCT_ADD_QUERY = "";
-	//query to get the product count
+	public static final String PRODUCT_ADD_QUERY = "INSERT INTO Product " +
+		    "(product_name, product_description, price, quantity, brand_id, product_image, screen_size, connectivity, os, features) " +
+		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 	public static final String GET_PRODUCT_COUNT_QUERY = "SELECT COUNT(*) FROM product";
 	//query to get the customer count
 	public static final String GET_CUSTOMER_COUNT_QUERY = "select count(*) from user where account_category = 'User'";
@@ -38,7 +40,7 @@ public class StringUtils {
 	public static final String PROFILE_PIC_DIR = "\\Users\\HeheHe\\eclipse-workspace\\TimZyStore\\src\\main\\webapp\\Uploads\\ProfilePictures\\";
 	public static final String PROFILE_PIC_SAVE_DIR = "C:" + File.separator + PROFILE_PIC_DIR;
 	public static final String PRODUCT_PIC_DIR = "Users\\HeheHe\\eclipse-workspace\\TimZyStore\\src\\main\\webapp\\Uploads\\ProductPictures\\";
-	public static final String PRODUCT_PIC_SAVE_DIR = "C:" + File.separator + PROFILE_PIC_DIR;
+	public static final String PRODUCT_PIC_SAVE_DIR = "C:" + File.separator + PRODUCT_PIC_DIR;
 	
 	public static final String LOGIN_PAGE = "/pages/Login.jsp";
 	public static final String REGISTER_PAGE = "/pages/SignUp.jsp";

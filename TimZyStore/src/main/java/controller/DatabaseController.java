@@ -12,6 +12,7 @@ import org.mindrot.bcrypt.BCrypt;
 
 import models.AdminModel;
 import models.BrandModel;
+import models.ProductModel;
 import models.UserModel;
 import utils.StringUtils;
 
@@ -67,12 +68,26 @@ public class DatabaseController {
 		}
 	}
 
-	public void addProduct() {
+	public int addProduct(ProductModel productModel) {
 		try (Connection con = getConnection()) {
+			PreparedStatement statement = con.prepareStatement(StringUtils.PRODUCT_ADD_QUERY);
+			statement.setString(1, productModel.getProduct_name());
+			statement.setString(2, productModel.getProduct_description());
+			statement.setDouble(3, productModel.getPrice());
+			statement.setInt(4, productModel.getQuantity());
+			statement.setInt(5, productModel.getBrand_id());
+			statement.setString(6, productModel.getProduct_image());
+			statement.setDouble(7, productModel.getScreen_size());
+			statement.setString(8, productModel.getConnectivity());
+			statement.setString(9, productModel.getOs());
+			statement.setString(10, productModel.getFeatures());
+            int result = statement.executeUpdate();
+            return result > 0 ? 1 : 0;
 
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return -1;
 		}
 	}
 	

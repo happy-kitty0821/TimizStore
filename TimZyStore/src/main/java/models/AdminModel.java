@@ -7,7 +7,6 @@ import javax.servlet.http.Part;
 import utils.StringUtils;
 
 public class AdminModel {
-	
 	private String  user_name;
 	private String password;
 	private String full_name;
