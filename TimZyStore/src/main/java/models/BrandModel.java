@@ -36,5 +36,12 @@ public class BrandModel {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+	public BrandModel(int brand_id, String brand_name, String country_of_origin, String website) {
+		super();
+		this.brand_id = brand_id;
+		this.brand_name = brand_name;
+		this.country_of_origin = country_of_origin;
+		this.website = website;
+	}
 	
 }

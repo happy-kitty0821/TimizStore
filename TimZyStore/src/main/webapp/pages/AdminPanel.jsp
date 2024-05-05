@@ -41,7 +41,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/DisplayMessageServlet">
                 <i class='bx bxs-message-dots' ></i>
                 <span class="text"> Message</span>
             </a>

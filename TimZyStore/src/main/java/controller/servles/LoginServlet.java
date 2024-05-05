@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
         } 
         else if (login_result == 2) {
             request.getSession().setAttribute("username", username);
-            response.sendRedirect(request.getContextPath() + StringUtils.HOME_ADMIN_SERVLET);
+            response.sendRedirect(request.getContextPath() + "/HomeAdmin");
         } 
         else if (login_result == 0) {
             request.setAttribute(StringUtils.ERROR_MESSAGE, StringUtils.INCORRECT_LOGIN_CREDENTIAL_ERROR);

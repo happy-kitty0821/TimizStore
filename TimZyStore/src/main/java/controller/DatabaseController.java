@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import org.mindrot.bcrypt.BCrypt;
 
+import models.AboutUsModel;
 import models.AdminModel;
 import models.BrandModel;
 import models.ProductModel;
@@ -162,10 +164,11 @@ public class DatabaseController {
 			PreparedStatement statement = con.prepareStatement(StringUtils.GET_ALL_BRAND_DETAILS_QUERY);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				String brand_name  = resultSet.getString("brand_name");
+				int brand_id = resultSet.getInt("brand_id");
+				String brand_name = resultSet.getString("brand_name");
 				String country_of_origin = resultSet.getString("country_of_origin");
 				String website = resultSet.getString("website");
-				BrandModel brandModel = new BrandModel(brand_name, country_of_origin, website);
+				BrandModel brandModel = new BrandModel(brand_id,brand_name, country_of_origin, website);
 				brandDetails.add(brandModel);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -175,9 +178,9 @@ public class DatabaseController {
 	return brandDetails;	
 	}
 	
-		public List<ProductModel> getProductsDetails(){
-		    List<ProductModel> productDetails = new ArrayList<>();
-		    try(Connection con = getConnection()){
+	public List<ProductModel> getProductsDetails(){
+		List<ProductModel> productDetails = new ArrayList<>();
+			try(Connection con = getConnection()){
 		        PreparedStatement statement = con.prepareStatement(StringUtils.GET_ALL_PRODUCTS);
 		        ResultSet resultSet = statement.executeQuery();
 		        while (resultSet.next()) {
@@ -202,5 +205,57 @@ public class DatabaseController {
 		    }
 		    return productDetails;
 		}
-
+		
+	public int deleteBrand(int brand_id) {
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.DELETE_BRAND_QUERY);
+			statement.setInt(1, brand_id);
+			int result = statement.executeUpdate();
+			return result;
+		}catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public int storeAbouUsMessage(AboutUsModel aboutUsModel) {
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.ADD_ABOUT_US_MESSAGE);
+			statement.setString(1, aboutUsModel.getSender_name() );
+			statement.setString(2, aboutUsModel.getSender_email());
+			statement.setString(3, aboutUsModel.getSubject());
+			statement.setString(4, aboutUsModel.getMessage());
+			int result = statement.executeUpdate();
+			return result > 0 ? 1 : 0;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+		
+	}
+	
+	public List<AboutUsModel> getAllMessages(){
+		List<AboutUsModel> allMessages = new ArrayList<>();
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.GET_ALL_MESSAGES_QUERY);
+			ResultSet resultSet = statement.executeQuery();
+		        while (resultSet.next()) {
+		        	String sender_name = resultSet.getString("sender_name");
+		        	String sender_email = resultSet.getString("sender_email");
+		        	String subject = resultSet.getString("subject");
+		        	String message = resultSet.getString("message");
+		        	Date timestamp = resultSet.getDate("timestamp");
+		        	AboutUsModel aboutUsModel = new AboutUsModel(sender_name, sender_email, subject, message, timestamp);
+		        	allMessages.add(aboutUsModel);
+		        }
+		        
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return allMessages;
+	}
+	
 }

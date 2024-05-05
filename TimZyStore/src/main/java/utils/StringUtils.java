@@ -30,6 +30,13 @@ public class StringUtils {
 	public static final String GET_ALL_PRODUCTS = "select * from Product";
 	//delete product query
 	public static final String DELETE_PRODUCT_QUERY = "DELETE FROM product WHERE product_id = ?";
+	//delete brand query
+	public static final String DELETE_BRAND_QUERY = "delete from Brand where brand_id = ?";
+	//store about us message 
+	public static final String ADD_ABOUT_US_MESSAGE = "insert into contact_us_messages (sender_name,sender_email,subject,message)"
+			+ "values(?,?,?,?)";
+	//get all message query
+	public static final String GET_ALL_MESSAGES_QUERY = "SELECT * FROM contact_us_messages";
 	
 	//constants 
 	public static final String user_name = "username";
@@ -51,30 +58,28 @@ public class StringUtils {
 	public static final String ADD_ADMIN_PAGE = "/pages/AdminRegistration.jsp";
 	public static final String HOME_PAGE = "/pages/Index.jsp";
 	public static final String ADMIN_PAGE = "/pages/Admin.jsp";
-	public static final String CONTACT_US_PAGE = "/pages/Contact.jsp";
+	public static final String ABOUT_US_PAGE = "/pages/AboutUs.jsp";
 	public static final String ADD_BRAND = "/pages/AddBrand.jsp";
 	public static final String ADD_PRODUCT_PAGE = "/pages/AddProducts.jsp";
 	// End JSP Route
 	
-	// Start Servlet Route
-	public static final String REGISTER_SERVLET = "/RegisterServlet";
-	public static final String LOGIN_SERVLET = "/UserLogin";
-	public static final String HOME_ADMIN_SERVLET = "/HomeAdmin";
-	// End Servlet Route
 
 
 	//Start of constant string messages
-	public static final String SUCCESSFULLY_REGISTERED_MESSAGE = "The User Was Successfully Registered!";
+	public static final String SUCCESSFULLY_REGISTERED_ADMIN_MESSAGE = "The User Was Successfully Registered!";
 	public static final String INCORRECT_FORM_DATA_MESSAGE = "Please Check and Enter The Correct Form Data.";
 	public static final String SERVER_ERROR_MESSAGE = "An unexpected server error occurred.";
 	public static final String SUCCESS_MESSAGE = "successMessage";
     public static final String ERROR_MESSAGE = "errorMessage";
-    public static final String INCORRECT_LOGIN_CREDENTIAL_ERROR = "Username or Password Incorrect";
-	public static final String Successfully_Stored_Message = "Dear user your message has been successfully stored, please wait for an response";
+    public static final String INCORRECT_LOGIN_CREDENTIAL_ERROR = "Your Username or Password is Incorrect";
+	public static final String Successfully_Stored_Message = "Your message has been successfully stored!";
 	public static final String SUCCESSFULLY_ADD_BRAND_MESSAGE = "Brand Added Successfully";
-	public static final String PRODUCT_SUCCESSFULLU_ADD_MESSAGE = "The product was added successfully";
-    public static final String PRODUCT_ALREADY_EXISTS_MESSAGE = "This product already exists";
+	public static final String PRODUCT_SUCCESSFULLY_ADD_MESSAGE = "The product was added successfully";
+    public static final String PRODUCT_ALREADY_EXISTS_MESSAGE = "The product already exists";
+    public static final String BRAND_DELETED_MESSAGE = "The requested brand was deleted sucessfully";
+    public static final String PRODUCT_DELETED_MESSAGE = "The proudct was deletd";
     public static final String USERANME_ALREADY_EXISTS_MESSAGE = "The user already exists";
     // End string messages
+	
 
 }
