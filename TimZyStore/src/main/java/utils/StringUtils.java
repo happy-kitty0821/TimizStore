@@ -37,7 +37,18 @@ public class StringUtils {
 			+ "values(?,?,?,?)";
 	//get all message query
 	public static final String GET_ALL_MESSAGES_QUERY = "SELECT * FROM contact_us_messages";
-	
+	//get logged in user details
+	public static final String GET_LOGGEDIN_USER_DETAILS = "SELECT * FROM user where user_name = ?";
+	//see order history
+	public static final String GET_ORDER_HISTORY_QUERY = "SELECT o.order_id, o.total_amount, o.order_date, p.product_name, p.product_image, o.quantity, o.price"
+			+"FROM orders o"
+			+"JOIN products p ON o.product_id = p.product_id"
+			+"WHERE o.user_id = ?";
+	//query to get all orders
+	public static final String GET_ALL_ORDERS_QUERU = "SELECT o.order_id, o.user_id, o.total_amount, o.order_date, od.product_id, p.product_name, od.quantity, od.price"
+			+ "FROM orders o"
+			+ "JOIN order_details od ON o.order_id = od.order_id"
+			+ "JOIN product p ON od.product_id = p.product_id";
 	//constants 
 	public static final String user_name = "username";
 	public static final String password = "password";

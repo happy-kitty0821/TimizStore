@@ -8,6 +8,7 @@ import javax.servlet.http.Part;
 import utils.StringUtils;
 
 public class UserModel implements Serializable {
+	private int user_id;
 	private String user_name;
 	private String password;
 	private String full_name;
@@ -48,6 +49,12 @@ public class UserModel implements Serializable {
 		
 	}
 	
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 	public String getUser_name() {
 		return user_name;
 	}
@@ -90,4 +97,19 @@ public class UserModel implements Serializable {
 	public void setProfile_picture_image(Part part) {
 		this.profile_picture_image = getProfilePicName(part);
 	}
+	public UserModel(int user_id, String user_name, String password, String full_name, String email,
+			String account_category, String phone_number, String profile_picture_image) {
+		super();
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.password = password;
+		this.full_name = full_name;
+		this.email = email;
+		this.account_category = account_category;
+		this.phone_number = phone_number;
+		this.profile_picture_image = profile_picture_image;
+	}
+	
+	
+	
 }

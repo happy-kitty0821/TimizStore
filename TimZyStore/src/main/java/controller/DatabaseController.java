@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import org.mindrot.bcrypt.BCrypt;
 import models.AboutUsModel;
 import models.AdminModel;
 import models.BrandModel;
+import models.OrderDetailsModel;
+import models.OrderModel;
 import models.ProductModel;
 import models.UserModel;
 import utils.StringUtils;
@@ -258,4 +261,56 @@ public class DatabaseController {
 		return allMessages;
 	}
 	
+	public List <UserModel> getLoggedinUserDetails(String username){
+		List<UserModel> userDetails = new ArrayList<>();
+			try(Connection con = getConnection()){
+				PreparedStatement statement = con.prepareStatement(StringUtils.GET_LOGGEDIN_USER_DETAILS);
+				statement.setString(1, username);				
+				ResultSet result = statement.executeQuery();
+				while(result.next()) {
+					int user_id_num = result.getInt("user_id");
+					String user_name = result.getString("user_name");
+					String password = result.getString("password");
+					String full_name = result.getString("full_name");
+					String email = result.getString("email");
+					String account_catrgory = result.getString("account_category");
+					String phone_number = result.getString("phone_number");
+					String profile_picture_image = result.getString("profile_picture_image");
+					UserModel userModel = new UserModel(user_id_num, user_name, password, full_name, email, account_catrgory, phone_number, profile_picture_image);
+					userDetails.add(userModel);
+				}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userDetails;
+	}
+	
+	public List <OrderModel> getUsersOrderDetail(int user_id){
+		List<OrderModel> userOrderDetails = new ArrayList<>();
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.GET_ORDER_HISTORY_QUERY);
+			statement.setInt(1, user_id);
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next()) {
+				int order_id = resultSet.getInt("order_id");
+	            int user_id_num = resultSet.getInt("user_id");
+	            Double total_amount = resultSet.getDouble("total_amount");
+	            LocalDateTime order_date = resultSet.getTimestamp("order_date").toLocalDateTime();
+	            int product_id = resultSet.getInt("product_id");
+	            String product_name = resultSet.getString("product_name");
+	            int quantity = resultSet.getInt("quantity");
+	            Double price = resultSet.getDouble("price");
+	            OrderModel orderDetails = new OrderModel();
+	            
+	            // Add the OrderDetailsModel object to the list
+	            userOrderDetails.add(orderDetails);
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userOrderDetails;
+	}
 }
