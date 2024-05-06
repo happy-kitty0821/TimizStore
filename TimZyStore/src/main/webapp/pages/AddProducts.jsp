@@ -77,7 +77,7 @@
             <input type="text" id="productName" name="product_name" required>
             
             <label for="productDescription">Product Description:</label>
-            <textarea id="productDescription" name="product_escription" rows="4"></textarea>
+            <textarea id="productDescription" name="product_description" rows="4"></textarea>
             
             <label for="price">Price:</label>
             <input type="number" id="price" name="price" min="0" step="0.01" required>
@@ -99,6 +99,9 @@
             
             <label for="os">Operating System:</label>
             <input type="text" id="os" name="os">
+            
+            <label for="os">Watch color:</label>
+            <input type="text" id="color" name="color">
             
             <label for="features">Features:</label>
             <textarea id="features" name="features" rows="4"></textarea>

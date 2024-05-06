@@ -54,10 +54,11 @@ public class AddBrandsServlet extends HttpServlet {
 		System.out.print(result);
 		if (result == 1) {
 		    request.setAttribute(StringUtils.SUCCESS_MESSAGE, StringUtils.SUCCESSFULLY_ADD_BRAND_MESSAGE);
-		    request.getRequestDispatcher(StringUtils.ADD_BRAND).forward(request, response);
+		    doGet(request,response);
+		    //request.getRequestDispatcher(StringUtils.ADD_BRAND).forward(request, response);
 		} 
 		else if (result == 0) {
-		    request.setAttribute(StringUtils.ERROR_MESSAGE, StringUtils.INCORRECT_FORM_DATA_MESSAGE);
+		    request.getSession().setAttribute(StringUtils.ERROR_MESSAGE, StringUtils.INCORRECT_FORM_DATA_MESSAGE);
 		    request.getRequestDispatcher(StringUtils.ADD_BRAND).forward(request, response);
 		} 
 		else {

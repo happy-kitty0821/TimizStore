@@ -56,9 +56,9 @@ public class AddProductServlet extends HttpServlet {
         String connectivity = request.getParameter("connectivity");
         String os = request.getParameter("os");
         String features = request.getParameter("features");
-        
+        String watch_color = request.getParameter("color");
         ProductModel productModel = new ProductModel(productName, productDescription, price, quantity, brandId, 
-        		productImagePart, screenSize, connectivity, os, features );
+        		productImagePart, screenSize, connectivity, os, features, watch_color );
         String savePath = StringUtils.PRODUCT_PIC_SAVE_DIR;
 		String fileName = productModel.getProduct_image();
 		try {

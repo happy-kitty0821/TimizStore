@@ -10,8 +10,8 @@ public class StringUtils {
 			+ "values(?,?,?,?,?,?)";
 	//query to add products
 	public static final String PRODUCT_ADD_QUERY = "INSERT INTO Product " +
-		    "(product_name, product_description, price, quantity, brand_id, product_image, screen_size, connectivity, os, features) " +
-		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		    "(product_name, product_description, price, quantity, brand_id, product_image, screen_size, connectivity, os, features, watch_color) " +
+		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	public static final String GET_PRODUCT_COUNT_QUERY = "SELECT COUNT(*) FROM product";
 	//query to get the customer count
@@ -49,6 +49,12 @@ public class StringUtils {
 			+ "FROM orders o"
 			+ "JOIN order_details od ON o.order_id = od.order_id"
 			+ "JOIN product p ON od.product_id = p.product_id";
+	//query to get user_id
+	public static final String GET_USER_ID_QUERY = "select user_id from user WHERE user_name=?";
+	//query to add product to cart
+	public static final String ADD_TO_CART_QUERY = "insert into cart (user_id, product_id, quantity)"
+			+ "values(?,?,?)";
+	//
 	//constants 
 	public static final String user_name = "username";
 	public static final String password = "password";

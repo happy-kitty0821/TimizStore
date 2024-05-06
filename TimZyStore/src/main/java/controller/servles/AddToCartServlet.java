@@ -1,8 +1,6 @@
 package controller.servles;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.DatabaseController;
-import models.AboutUsModel;
-import models.ProductModel;
 
 /**
- * Servlet implementation class DisplayProductAdmin
+ * Servlet implementation class AddToCartServlet
  */
-@WebServlet("/DisplayProductAdmin")
-public class DisplayProductAdmin extends HttpServlet {
+@WebServlet("/AddToCartServlet")
+public class AddToCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    DatabaseController dbController = new DatabaseController();   
+	DatabaseController dbController = new DatabaseController();
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DisplayProductAdmin() {
+    public AddToCartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +28,19 @@ public class DisplayProductAdmin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<ProductModel> products = dbController.getProductsDetails();
-        System.out.println("Calling of display messages servlet");
-        // Set the attribute in the request to pass the list of messages to the JSP
-        request.setAttribute("products", products);
-        // Forward the request to your JSP
-        request.getRequestDispatcher("pages/AdminProduct.jsp").forward(request, response);
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String username = (String) request.getSession().getAttribute("username");
+        if (username != null) {
+        	System.out.print("Username is : " + username);
+        	int user_id = dbController.getUserId(username);
+        	
+        }
+        else {
+        	System.out.println("user is not logged in");
+            // Redirect to the login page
+            response.sendRedirect(request.getContextPath() + "/pages/ProductPage.jsp");
+        }
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

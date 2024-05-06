@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="profile-pic">
-      <img src="<%= request.getContextPath() %>/Uploads/ProfilePictures/${profilePictureImage}" alt="Profile Picture"> <!-- Accessing profilePictureImage attribute -->
+      <img src="${pageContext.request.contextPath}/Uploads/ProfilePictures/${profilePictureImage}" alt="Profile Picture"> <!-- Accessing profilePictureImage attribute -->
     </div>
     <button id="edit-profile-btn" style="margin-top: 10px;">Purchase History</button>
   </div>

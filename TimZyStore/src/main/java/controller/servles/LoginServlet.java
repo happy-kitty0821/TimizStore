@@ -45,6 +45,7 @@ public class LoginServlet extends HttpServlet {
         } 
         else if (login_result == 2) {
             request.getSession().setAttribute("username", username);
+//            httpSession session = new httpSession();
             response.sendRedirect(request.getContextPath() + "/HomeAdmin");
         } 
         else if (login_result == 0) {

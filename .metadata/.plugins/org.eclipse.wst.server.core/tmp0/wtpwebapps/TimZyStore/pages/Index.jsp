@@ -18,8 +18,8 @@
         <div class="navbar">
             <ul class="navlist">
                 <li><a href="watch.jsp">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/pages/Product.jsp">Product</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/DisplayProductUser">Product</a></li>
+                <li><a href="${pageContext.request.contextPath}/AboutUs.jsp">About Us</a></li>
                 <% 
             if (session.getAttribute("username") == null) {
             %>

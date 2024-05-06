@@ -87,7 +87,7 @@
                 for (ProductModel product : products) { 
         %>
             <tr>
-                <td><img src="Uploads/ProductPictures/<%= product.getProduct_image() %>" alt="<%= product.getProduct_name() %>"></td>
+                <td><img src="${pageContext.request.contextPath}/Uploads/ProductPictures/<%= product.getProduct_image() %>" alt="<%= product.getProduct_name() %>"></td>
                 <td><%= product.getProduct_name() %></td>
                 <td><%= product.getProduct_description() %></td>
                 <td><%= product.getPrice() %></td>

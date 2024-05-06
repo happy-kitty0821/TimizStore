@@ -15,7 +15,7 @@ import org.mindrot.bcrypt.BCrypt;
 import models.AboutUsModel;
 import models.AdminModel;
 import models.BrandModel;
-import models.OrderDetailsModel;
+import models.CartModel;
 import models.OrderModel;
 import models.ProductModel;
 import models.UserModel;
@@ -86,6 +86,7 @@ public class DatabaseController {
 			statement.setString(8, productModel.getConnectivity());
 			statement.setString(9, productModel.getOs());
 			statement.setString(10, productModel.getFeatures());
+			statement.setString(11, productModel.getWatch_color());
             int result = statement.executeUpdate();
             System.out.print("product add :"+ result );
             return result > 0 ? 1 : 0;
@@ -198,8 +199,9 @@ public class DatabaseController {
 		            String connectivity = resultSet.getString("connectivity");
 		            String os = resultSet.getString("os");
 		            String features = resultSet.getString("features");
+		            String watch_color = resultSet.getString("watch_color");
 		            ProductModel productModel = new ProductModel(product_id, product_name,product_description, price,
-		            quantity, brand_id, product_image, screen_size, connectivity, os, features);
+		            quantity, brand_id, product_image, screen_size, connectivity, os, features, watch_color);
 		            productDetails.add(productModel);
 		        }
 		        
@@ -292,6 +294,7 @@ public class DatabaseController {
 			PreparedStatement statement = con.prepareStatement(StringUtils.GET_ORDER_HISTORY_QUERY);
 			statement.setInt(1, user_id);
 			ResultSet resultSet = statement.executeQuery();
+			
 			while(resultSet.next()) {
 				int order_id = resultSet.getInt("order_id");
 	            int user_id_num = resultSet.getInt("user_id");
@@ -301,10 +304,10 @@ public class DatabaseController {
 	            String product_name = resultSet.getString("product_name");
 	            int quantity = resultSet.getInt("quantity");
 	            Double price = resultSet.getDouble("price");
-	            OrderModel orderDetails = new OrderModel();
+//	            OrderModel orderDetails = new OrderModel();
 	            
 	            // Add the OrderDetailsModel object to the list
-	            userOrderDetails.add(orderDetails);
+//	            userOrderDetails.add(orderDetails);
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -312,5 +315,33 @@ public class DatabaseController {
 			e.printStackTrace();
 		}
 		return userOrderDetails;
+	}
+	
+
+	public int getUserId(String user_name) {
+	    int user_id = -1; // Default value if no user is found
+	    try (Connection con = getConnection()) {
+	        PreparedStatement statement = con.prepareStatement(StringUtils.GET_USER_ID_QUERY);
+	        statement.setString(1, user_name); // Set the user_name parameter
+	        ResultSet resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            user_id = resultSet.getInt(1);
+	            System.out.println("user_id = " + user_id);
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return user_id;
+	}
+
+	public void addProductToCart(CartModel cartModel) {
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.ADD_TO_CART_QUERY);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//return -1;
+		}
+		
 	}
 }
