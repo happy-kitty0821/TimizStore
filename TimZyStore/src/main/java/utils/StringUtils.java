@@ -58,11 +58,24 @@ public class StringUtils {
 	//insert into orders table 
 	public static final String INSERT_INTO_ORDERS = "INSERT INTO Orders (user_id, total_amount, product_id, quantity, price) "
 			+ "VALUES (?, ?, ?, ?, ?)";
+	//query to get user cart info
+	public static final String GET_CART_HISTROY = "SELECT "
+	        + "    c.cart_id, "
+	        + "    c.user_id, "
+	        + "    c.product_id, "
+	        + "    c.quantity, "
+	        + "    p.product_name, "
+	        + "    p.price, "
+	        + "    p.product_image "
+	        + "FROM "
+	        + "    cart c JOIN product p ON c.product_id = p.product_id "
+	        + "WHERE "
+	        + "    c.user_id = ?";
 	
 	//query to update the database after a purchase
 	public static final String UPDATE_PRODUCT_QUANTITY_QUERY = "UPDATE products p"
 			+ "JOIN orders o ON p.product_id = o.product_id"
-			+ "SET p.quantity = p.quantity - o.quantity"
+			+ "SET p.quantity = p.quantity - o.quantity"	
 			+ "WHERE o.order_id = ?";
 	//constants 
 	public static final String user_name = "username";

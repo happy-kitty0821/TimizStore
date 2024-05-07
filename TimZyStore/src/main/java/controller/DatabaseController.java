@@ -16,6 +16,7 @@ import models.AboutUsModel;
 import models.AdminModel;
 import models.BrandModel;
 import models.CartModel;
+import models.DisplayCartModel;
 import models.OrderModel;
 import models.ProductModel;
 import models.UserModel;
@@ -362,7 +363,30 @@ public class DatabaseController {
 			} catch (SQLException | ClassNotFoundException e) {
 			    e.printStackTrace();
 			    return -1;
-			}
-
+		}
 	}
+	
+	public List<DisplayCartModel> getUsersCartDetails(int user_id) {
+	    List<DisplayCartModel> cartDetails = new ArrayList<>();
+	    try (Connection con = getConnection();
+	         PreparedStatement statement = con.prepareStatement(StringUtils.GET_CART_HISTROY )) {
+	        statement.setInt(1, user_id);
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            while (resultSet.next()) {
+	                int product_id = resultSet.getInt("product_id");
+	                String product_name = resultSet.getString("product_name");
+	                int quantity = resultSet.getInt("quantity");
+	                double price = resultSet.getDouble("price");
+	                String product_image = resultSet.getString("product_image");
+	                DisplayCartModel displayCartModel = new DisplayCartModel(product_id, product_name, quantity, price, product_image);
+	                cartDetails.add(displayCartModel);
+	            }
+	        }
+	    } catch (ClassNotFoundException | SQLException e) {
+	        // Consider logging the exception instead of printing stack trace
+	        e.printStackTrace();
+	    }
+	    return cartDetails;
+	}
+
 }

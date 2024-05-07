@@ -28,7 +28,7 @@
                 <!--<li><a href="#">SignUp</a></li> -->
             </ul>
              <li><a href="${pageContext.request.contextPath}/UserProfile" id="profile-link"><i class="fa-solid fa-user"></i></a></li>
-             <li><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+             <li><a href="${pageContext.request.contextPath}/UserCartServlet"><i class="fa-solid fa-cart-shopping"></i></a></li>
             <button> Get Started</button>
         </div>
         <section class="hero">
