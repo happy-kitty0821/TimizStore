@@ -8,18 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Watch</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/Style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> 
 </head>
 <body>
     <div class="container">
         <div class="ecommerce-name"></div>
         <div class="navbar">
             <ul class="navlist">
-                <li><a href="watch.jsp">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/Index.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/DisplayProductUser">Product</a></li>
-                <li><a href="${pageContext.request.contextPath}/AboutUs.jsp">About Us</a></li>
+                <li><a href="${pageContext.request.contextPath}/pages/AboutUs.jsp">About Us</a></li>
                 <% 
             if (session.getAttribute("username") == null) {
             %>

@@ -52,9 +52,18 @@ public class StringUtils {
 	//query to get user_id
 	public static final String GET_USER_ID_QUERY = "select user_id from user WHERE user_name=?";
 	//query to add product to cart
-	public static final String ADD_TO_CART_QUERY = "insert into cart (user_id, product_id, quantity)"
-			+ "values(?,?,?)";
-	//
+	public static final String ADD_TO_CART_QUERY = "INSERT INTO cart (user_id, product_id, quantity) "
+	        + "VALUES (?, ?, ?) "
+	        + "ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
+	//insert into orders table 
+	public static final String INSERT_INTO_ORDERS = "INSERT INTO Orders (user_id, total_amount, product_id, quantity, price) "
+			+ "VALUES (?, ?, ?, ?, ?)";
+	
+	//query to update the database after a purchase
+	public static final String UPDATE_PRODUCT_QUANTITY_QUERY = "UPDATE products p"
+			+ "JOIN orders o ON p.product_id = o.product_id"
+			+ "SET p.quantity = p.quantity - o.quantity"
+			+ "WHERE o.order_id = ?";
 	//constants 
 	public static final String user_name = "username";
 	public static final String password = "password";

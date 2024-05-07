@@ -63,4 +63,13 @@ public class OrderModel {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public OrderModel(int user_id, double total_amount, int product_id, int quantity, double price) {
+		super();
+		this.user_id = user_id;
+		this.total_amount = total_amount;
+		this.product_id = product_id;
+		this.quantity = quantity;
+		this.price = price;
+	}
+	
 }

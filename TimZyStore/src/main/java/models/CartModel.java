@@ -8,9 +8,8 @@ public class CartModel {
 	private int product_id;
 	private int quantity;
 	private Date timestamp;
-	public CartModel(int cart_id, int user_id, int product_id, int quantity) {
+	public CartModel(int user_id, int product_id, int quantity) {
 		super();
-		this.cart_id = cart_id;
 		this.user_id = user_id;
 		this.product_id = product_id;
 		this.quantity = quantity;

@@ -334,14 +334,35 @@ public class DatabaseController {
 	    return user_id;
 	}
 
-	public void addProductToCart(CartModel cartModel) {
+	public int addProductToCart(CartModel cartModel) {
 		try(Connection con = getConnection()){
 			PreparedStatement statement = con.prepareStatement(StringUtils.ADD_TO_CART_QUERY);
+			statement.setInt(1, cartModel.getUser_id());
+			statement.setInt(2, cartModel.getProduct_id());
+			statement.setInt(3, cartModel.getQuantity());
+			int result = statement.executeUpdate();
+			return result > 0 ? 1 : 0;
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//return -1;
+			return -1;
 		}
-		
+	}
+	public int storePurchases(OrderModel orderModel) {
+		try (Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.INSERT_INTO_ORDERS);
+			statement.setInt(1, orderModel.getUser_id());
+			statement.setDouble(2, orderModel.getTotal_amount());
+			statement.setInt(3, orderModel.getProduct_id());
+			statement.setInt(4, orderModel.getQuantity());
+			statement.setDouble(5, orderModel.getPrice());  
+			
+			int result = statement.executeUpdate();
+			return result  > 0 ? 1 : 0;
+			} catch (SQLException | ClassNotFoundException e) {
+			    e.printStackTrace();
+			    return -1;
+			}
+
 	}
 }
