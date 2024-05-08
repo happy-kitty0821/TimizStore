@@ -171,5 +171,17 @@ public class ProductModel {
 		this.features = features;
 		this.watch_color = watch_color;
 	}
+	//used for search 
+
+	public ProductModel(int product_id, String product_name, String product_description, double price, int quantity,
+			String product_image) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.product_description = product_description;
+		this.price = price;
+		this.quantity = quantity;
+		this.product_image = product_image;
+	}
 	
 }

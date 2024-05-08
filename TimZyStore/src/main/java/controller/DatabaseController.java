@@ -377,8 +377,9 @@ public class DatabaseController {
 	                String product_name = resultSet.getString("product_name");
 	                int quantity = resultSet.getInt("quantity");
 	                double price = resultSet.getDouble("price");
+	                double total_price = price * quantity;
 	                String product_image = resultSet.getString("product_image");
-	                DisplayCartModel displayCartModel = new DisplayCartModel(product_id, product_name, quantity, price, product_image);
+	                DisplayCartModel displayCartModel = new DisplayCartModel(product_id, product_name, quantity, total_price, product_image);
 	                cartDetails.add(displayCartModel);
 	            }
 	        }
@@ -387,6 +388,29 @@ public class DatabaseController {
 	        e.printStackTrace();
 	    }
 	    return cartDetails;
+	}
+	
+	public List<ProductModel> getResultFromSearch(String keyword){
+		List<ProductModel> result = new ArrayList<>();
+		try(Connection con = getConnection()){
+			PreparedStatement statement = con.prepareStatement(StringUtils.SEARCH_QUERY);
+			statement.setString(1,"%"+ keyword+"%");
+			ResultSet searchResult = statement.executeQuery();
+			while(searchResult.next()){
+				int product_id = searchResult.getInt("product_id");
+                String product_name = searchResult.getString("product_name");
+                String product_description = searchResult.getString("product_description");
+                Double price = searchResult.getDouble("price");
+                int quantity = searchResult.getInt("quantity");
+                String product_image = searchResult.getString("product_image");
+                ProductModel productModel = new ProductModel(product_id, product_name, product_description, price, quantity, product_image);
+                result.add(productModel);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

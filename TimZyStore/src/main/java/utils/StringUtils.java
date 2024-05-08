@@ -77,6 +77,9 @@ public class StringUtils {
 			+ "JOIN orders o ON p.product_id = o.product_id"
 			+ "SET p.quantity = p.quantity - o.quantity"	
 			+ "WHERE o.order_id = ?";
+	//search query
+	public static final String SEARCH_QUERY = "SELECT * FROM product WHERE product_name LIKE ?";
+	
 	//constants 
 	public static final String user_name = "username";
 	public static final String password = "password";
